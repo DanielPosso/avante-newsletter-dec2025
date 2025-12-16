@@ -674,7 +674,7 @@ Pricing: $1.75 per million input tokens—aggressive pricing to capture enterpri
         <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
           <div className="aspect-video">
             <iframe
-              src="https://app.heygen.com/embed/2d17d0283b544b138a33e3b91abce954"
+              src="https://app.heygen.com/guest/videos/2d17d0283b544b138a33e3b91abce954"
               title="Newsletter Introduction"
               allow="encrypted-media; fullscreen"
               className="w-full h-full"
