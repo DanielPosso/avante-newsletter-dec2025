@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avante Capital Partners - AI Newsletter Briefing | December 2025</title>
+  <meta name="description" content="The Agentic Shift, Capital Efficiency, and the New Regulatory Fracture - Strategic intelligence for private equity and venture capital leaders">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const AvanteNewsletter = () => {
+      const [activeTab, setActiveTab] = useState('pevc');
+      const [expandedCards, setExpandedCards] = useState({});
+
+      const toggleCard = (id) => {
+        setExpandedCards(prev => ({ ...prev, [id]: !prev[id] }));
+      };
+
+      const tabs = [
+        { id: 'pevc', label: 'PE/VC Developments', icon: '📊' },
+        { id: 'enterprise', label: 'Enterprise AI', icon: '🏢' },
+        { id: 'market', label: 'Market Intelligence', icon: '🎯' },
+        { id: 'sources', label: 'Key Sources', icon: '📚' }
+      ];
+
+      const FlagBadge = ({ type }) => {
+        const styles = {
+          opportunity: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+          risk: 'bg-rose-50 text-rose-700 border-rose-200',
+          watch: 'bg-amber-50 text-amber-700 border-amber-200'
+        };
+        const labels = {
+          opportunity: 'Opportunity',
+          risk: 'Risk',
+          watch: 'Watch'
+        };
+        return (
+          <span className={`text-xs px-2 py-0.5 rounded border ${styles[type]}`}>
+            {labels[type]}
+          </span>
+        );
+      };
+
+      const StoryCard = ({ id, title, summary, details, flag, relevance, sourceUrl, sourceName }) => {
+        const isExpanded = expandedCards[id];
+        return (
+          <div className="bg-white rounded-lg border border-gray-200 p-5 mb-4 hover:shadow-md transition-shadow">
+            <div className="flex justify-between items-start mb-2">
+              <h3 className="font-semibold text-gray-900 text-lg leading-tight">{title}</h3>
+              {flag && <FlagBadge type={flag} />}
+            </div>
+            <p className="text-gray-600 text-sm leading-relaxed mb-3">{summary}</p>
+            {sourceUrl && (
+              <a
+                href={sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-blue-600 text-xs font-medium hover:text-blue-800 mb-3"
+              >
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                {sourceName || 'Read source article'}
+              </a>
+            )}
+            {details && (
+              <>
+                <button
+                  onClick={() => toggleCard(id)}
+                  className="text-blue-600 text-sm font-medium hover:text-blue-800 flex items-center gap-1"
+                >
+                  {isExpanded ? 'Show less' : 'Read more'}
+                  <span className={`transform transition-transform ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
+                </button>
+                {isExpanded && (
+                  <div className="mt-3 pt-3 border-t border-gray-100">
+                    <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line">{details}</p>
+                    {relevance && (
+                      <div className="mt-3 bg-blue-50 rounded p-3">
+                        <p className="text-blue-800 text-sm"><span className="font-medium">Relevance:</span> {relevance}</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        );
+      };
+
+      const SectionHeader = ({ title, subtitle }) => (
+        <div className="mb-6">
+          <h2 className="text-xl font-bold text-gray-900 mb-1">{title}</h2>
+          {subtitle && <p className="text-gray-500 text-sm">{subtitle}</p>}
+        </div>
+      );
+
+      const renderPEVC = () => (
+        <div className="space-y-8">
+          {/* Key Insight Box */}
+          <div className="bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-6 text-white">
+            <h3 className="text-lg font-semibold mb-2">The Big Picture</h3>
+            <p className="text-slate-200 leading-relaxed">
+              December 2025 marks the end of "AI tourism" in private equity. The era of superficial pilots and AI-washed fundraising decks is over. 
+              We're seeing a mandate for <span className="text-white font-medium">Capital Efficiency</span> and <span className="text-white font-medium">Agentic Operations</span>—where 
+              AI agents are restructuring entire investment theses around proprietary data advantages and autonomous operations.
+            </p>
+          </div>
+
+          {/* Fundraising & IR */}
+          <div>
+            <SectionHeader 
+              title="Fundraising & Investor Relations" 
+              subtitle="The transition to algorithmic capital formation"
+            />
+            <StoryCard
+              id="juniper"
+              title="Juniper Square Launches First AI CRM for Private Markets"
+              summary="Juniper Square has introduced the industry's first AI-native CRM specifically designed for private markets investor relations. The platform leverages 'JunieAI' technology to automatically enrich investor data, analyze communication patterns, and surface actionable fundraising insights that would take human analysts weeks to compile."
+              details="This launch signals a fundamental shift away from static investor databases toward dynamic, intelligent systems. IR teams can now deploy AI agents to autonomously draft Due Diligence Questionnaire (DDQ) responses based on historical submissions, track LP sentiment patterns across all communications (emails, call notes, meeting transcripts), and generate predictive models for commitment likelihood based on years of interaction data.
+
+The platform reportedly reduces DDQ response time by 70% and increases LP conversion rates by identifying optimal outreach timing. Early adopters report their IR teams are now focusing on high-value relationship cultivation rather than data management."
+              relevance="Critical for mid-market PE firms seeking to compete with larger funds' IR capabilities without proportional headcount increases. Enables smaller teams to maintain institutional-quality LP relationships."
+              flag="opportunity"
+              sourceUrl="https://www.junipersquare.com/news/ai-crm"
+              sourceName="Juniper Square Press Release"
+            />
+            <StoryCard
+              id="passthrough"
+              title="Passthrough Pioneer Awards: Lightning Fund Launches"
+              summary="Passthrough's 2025 Pioneer Awards highlighted a new category of fund managers achieving 'Lightning Launches'—closing funds in a fraction of historical timelines by systematically removing manual friction from subscription document processing, KYC/AML verification, and LP onboarding workflows."
+              details="The awards analyzed thousands of fund closes to identify patterns among top performers. Key findings include:
+
+• Top-quartile funds complete subscription document processing 3x faster than industry average
+• Automated KYC/AML workflows reduce LP onboarding from weeks to days
+• Predictive analytics identify potential closing bottlenecks before they cause delays
+
+The data indicates that firms leveraging these automated workflows can reduce time-to-close by 20-30%, directly impacting fund economics by accelerating deployment timelines and reducing administrative overhead during fundraising."
+              relevance="Early adopters gain competitive advantage in crowded fundraising environments where LP attention is scarce and delays can mean lost commitments."
+              flag="opportunity"
+              sourceUrl="https://www.passthrough.com/blog/pioneer-awards-2025"
+              sourceName="Passthrough Blog"
+            />
+            <StoryCard
+              id="grantd"
+              title="Grantd: AI-Powered Equity Compensation Platform"
+              summary="Grantd has launched an AI-powered equity compensation platform that uses computer vision and natural language processing to extract grant data from unstructured documents—including scanned PDFs, screenshots of equity portals, and photographed stock certificates—then optimizes exercise timing and tax strategies."
+              details="The platform addresses a critical pain point in portfolio company management: the complexity of equity compensation across multiple grants, vesting schedules, and tax jurisdictions. For VC and PE firms, this tool automates the advisory work required for portfolio company founders and executives, transforming what was manual, expensive, and error-prone into systematic, scalable value-add.
+
+Key capabilities include automatic 83(b) election deadline tracking, AMT liability forecasting, and optimal exercise timing recommendations based on company trajectory and personal tax situations."
+              sourceUrl="https://www.morningstar.com/news/accesswire/1115698msn/grantd-launches-the-definitive-equity-compensation-advice-platform"
+              sourceName="Morningstar"
+            />
+          </div>
+
+          {/* Deal Sourcing & Due Diligence */}
+          <div>
+            <SectionHeader 
+              title="Deal Sourcing & Due Diligence" 
+              subtitle="The 'reasoning' engine transforms analysis speed and depth"
+            />
+            <StoryCard
+              id="toltiq"
+              title="ToltIQ: Building the 'Bloomberg Terminal' for Diligence"
+              summary="Founded by former KKR Chief Investment Officer Ed Brandman, ToltIQ is rapidly gaining traction with its vision of creating a unified intelligence layer that connects millions of pages of disparate deal documents—CIMs, quality of earnings reports, legal due diligence memos, management presentations—into a single queryable system."
+              details="A significant December development was ToltIQ's release of a benchmarking study comparing leading LLMs specifically on private equity workflows. The study evaluated Claude 4 Sonnet, GPT-4.1, and Google Gemini 2.5 across tasks including financial spreading, covenant interpretation, and deal memo synthesis.
+
+Key findings:
+• Anthropic's Claude 4 Sonnet achieved the highest qualitative score (8.02/10) for analytical depth and complex financial reasoning
+• Claude outperformed GPT-4.1 specifically in 'high-density' tasks like spreading financials from unstructured PDFs or interpreting complex debt covenant language
+• GPT-4.1 showed advantages in speed for simpler extraction tasks
+
+This validates the multi-model approach: firms cannot rely on a single LLM but need orchestration layers that route tasks to the most capable model for each specific workflow. The implication is that 'reasoning' capability is now a purchasable commodity, potentially leveling the playing field between mega-funds with proprietary tech teams and mid-market firms."
+              relevance="Firms using these platforms report reducing diligence timelines by 50%, enabling deeper analysis of more targets in less time. This directly reduces 'dead deal costs' and improves hit rates."
+              flag="opportunity"
+              sourceUrl="https://worth.com/ai-transforming-private-equity/"
+              sourceName="Worth Magazine"
+            />
+            <StoryCard
+              id="blueflame"
+              title="BlueFlame AI Integrates Live Earnings Data via Quartr"
+              summary="Following its acquisition by Datasite, BlueFlame AI has expanded its agentic capabilities by integrating the Quartr API, enabling autonomous monitoring of real-time earnings calls, extraction of specific KPIs relevant to investment theses, and automatic updating of deal memos without human intervention."
+              details="The integration fundamentally changes how deal teams track public comparable companies and potential acquisition targets. Instead of analysts manually downloading quarterly transcripts and summarizing key metrics, BlueFlame agents now:
+
+• Monitor earnings calls in real-time across a watchlist of companies
+• Extract specific KPIs pre-defined by the deal team (e.g., 'net revenue retention,' 'customer acquisition cost trends')
+• Update deal memos and comp tables autonomously
+• Flag material changes that deviate from investment thesis assumptions
+
+This creates a live, continuously-updated link between public market signals and private market thesis generation—particularly valuable for public-to-private transactions and competitive intelligence."
+              relevance="Investment banks and PE deal teams focused on public-to-private transactions or extensive competitor benchmarking can maintain real-time market intelligence without dedicated analyst coverage."
+              flag="watch"
+              sourceUrl="https://quartr.com/newsroom/press-release/blueflame-ai-leverages-quartr-api-to-build-ai-driven-analysis-for-ir-and-investment-teams"
+              sourceName="Quartr Press Release"
+            />
+            <StoryCard
+              id="specialized"
+              title="Specialized Diligence Tools: Construction, Credit, and Beyond"
+              summary="December saw a wave of funding for verticalized AI applications targeting specific diligence workflows previously considered too specialized for automation: construction cost estimation, drawing error detection, and continuous credit underwriting."
+              details="Three notable raises signal the depth of AI penetration into specialized diligence:
+
+• Bobyard ($35M Series A): Automates construction takeoffs and cost estimates using computer vision to analyze blueprints. For Real Estate PE and Infrastructure funds, this replaces one of the most tedious aspects of asset diligence—verifying build costs and material requirements. The platform reportedly reduces takeoff time from days to hours while improving accuracy.
+
+• Buildcheck ($5.9M Seed): Uses AI to analyze construction drawings for errors, code violations, and coordination issues before they become costly change orders. Critical for value-add real estate strategies where construction risk is a primary concern.
+
+• AIR - AI Risk ($6.1M Seed): Building an AI-powered credit intelligence platform that re-rates companies in real-time using alternative data sources (payment patterns, web traffic, employment data). Offers Private Credit funds 'continuous underwriting' capability that traditional credit agencies—with their quarterly update cycles—cannot match."
+              sourceUrl="https://www.thesaasnews.com/news/bobyard-raises-35-million-in-series-a"
+              sourceName="The SaaS News"
+            />
+          </div>
+
+          {/* Portfolio Value Creation */}
+          <div>
+            <SectionHeader 
+              title="Portfolio Company Value Creation" 
+              subtitle="The efficiency mandate reshapes operating playbooks"
+            />
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+              <p className="text-amber-800 text-sm font-medium mb-1">Market Signal to Watch</p>
+              <p className="text-amber-700 text-sm">The industry narrative is shifting from "augmenting" workers to "replacing" roles to drive margin expansion. This has significant implications for value creation strategies and exit multiples.</p>
+            </div>
+            <StoryCard
+              id="vista"
+              title="Vista Equity Partners: AI-Driven Workforce Restructuring"
+              summary="Vista Equity Partners has reportedly informed investors of plans to significantly reduce workforce headcount across its portfolio companies—and the firm itself—by up to one-third, explicitly replacing operational roles and junior analysts with AI agents as part of a systematic value creation strategy."
+              details="CEO Robert F. Smith's comments suggest this is not a one-time restructuring but a fundamental shift in operating philosophy. Key points from investor communications:
+
+• Vista is actively scoring portfolio companies on 'AI adoption maturity'—this metric is directly tied to operational savings targets and margin expansion expectations
+• Smith suggested that '40% of people will have an AI agent next year,' positioning Vista to capture this transition before competitors
+• The firm is building proprietary AI tools for portfolio company deployment, creating a potential new value-add lever
+
+The Strategic Calculus: If a Vista company generates the same EBITDA with 30% fewer employees, its free cash flow profile—and therefore its exit valuation—is structurally superior. This sets a new benchmark that other PE firms will be forced to evaluate.
+
+However, execution risks are significant: aggressive headcount reduction can trigger cultural backlash, loss of institutional knowledge, and 'model collapse' if human oversight is removed too quickly from critical workflows."
+              relevance="Large-cap PE and turnaround funds must evaluate their own positioning on this spectrum. The competitive pressure from Vista's approach will influence valuation expectations across the industry."
+              flag="risk"
+              sourceUrl="https://www.investing.com/news/company-news/vista-equity-partners-plans-significant-workforce-cuts-ai-adoption--report-93CH-4350047"
+              sourceName="Investing.com"
+            />
+            <StoryCard
+              id="eqt"
+              title="EQT Partners with 1X: 10,000 Humanoid Robots Deployment"
+              summary="EQT announced a strategic collaboration with robotics startup 1X to deploy up to 10,000 humanoid robots across its portfolio companies starting in 2026—one of the largest planned deployments of humanoid robotics in history, targeting logistics, warehousing, and manufacturing operations."
+              details="This announcement moves AI-driven value creation from the digital realm (software automation) to the physical (labor replacement in manual operations). EQT's strategic thesis:
+
+• Labor shortages in industrial sectors are structural and demographic—they will worsen, not improve
+• By solving this via capital investment in robotics, EQT fundamentally alters the OPEX/CAPEX mix of portfolio companies
+• Variable labor costs convert to fixed capital costs, which can be financed, depreciated, and scaled predictably
+
+The controlled commercial ramp starting in 2026 suggests EQT is taking a measured approach, likely piloting across 2-3 portfolio companies before broader deployment. For Industrial and Logistics PE firms, this represents a preview of the next frontier of operational leverage."
+              relevance="Industrial and logistics-focused PE firms should evaluate robotics partnerships as a potential value creation lever. The conversion of labor to capital costs changes unit economics and scalability profiles."
+              flag="opportunity"
+              sourceUrl="https://inforcapital.com/news/eqt-to-roll-out-up-to-10000-1x-humanoid-robots/"
+              sourceName="InforCapital"
+            />
+          </div>
+
+          {/* Exit Optimization */}
+          <div>
+            <SectionHeader 
+              title="Exit Optimization" 
+              subtitle="The data science of liquidity"
+            />
+            <StoryCard
+              id="coller"
+              title="Coller Capital: AI-Powered Exit Timing Prediction"
+              summary="Coller Capital released insights on their deployment of AI models to forecast optimal exit timing, combining IPO market activity data, interest rate trajectories, sector-specific M&A trends, and individual company fundamentals to predict liquidity events with higher accuracy than traditional analyst-driven approaches."
+              details="The firm's models employ 'ensemble learning' techniques that combine multiple weak signals—each individually insufficient for prediction—into strong composite indicators. Examples include:
+
+• Correlation between minor interest rate movements (1% changes) and distribution pace acceleration
+• Sector rotation patterns that precede M&A activity spikes
+• Public market comparable valuation movements as leading indicators
+
+The models can identify 'exit windows' months in advance of broader market recognition, providing significant advantage in timing decisions. This moves exit planning from art to data science—portfolio managers can now evaluate timing decisions with statistical confidence intervals rather than gut instinct."
+              relevance="For Secondaries funds and LPs managing liquidity, AI-driven exit prediction offers meaningful edge in portfolio pricing and cash flow planning. The ability to anticipate distributions improves capital allocation efficiency."
+              flag="opportunity"
+              sourceUrl="https://www.collercapital.com/using-ai-to-predict-the-perfect-exit-a-new-era-for-private-equity/"
+              sourceName="Coller Capital"
+            />
+            <StoryCard
+              id="73strings"
+              title="73 Strings Expands AI Valuation Platform to San Francisco"
+              summary="73 Strings, an AI-powered valuation platform for private markets, opened a new San Francisco office to support accelerating demand from GPs and LPs requiring more frequent, automated valuations—a capability becoming essential as the industry shifts toward evergreen structures and retail capital."
+              details="The expansion reflects a structural shift in private markets: the movement toward 'evergreen' fund structures and increased retail investor access is forcing the industry to adopt monthly or even real-time valuations. Traditional quarterly manual processes—typically involving Excel spreadsheets and significant auditor time—cannot support this cadence.
+
+73 Strings' AI automation provides the only viable path to:
+• Comply with new liquidity and reporting demands from retail-oriented structures
+• Maintain audit-quality documentation and defensibility
+• Scale valuation processes without proportional headcount increases
+
+The San Francisco office positions the firm to serve the largest concentration of VC and growth equity firms as they adapt to new reporting requirements."
+              sourceUrl="https://www.73strings.com/insights/press/73-strings-accelerates-global-ai-strategy-with-opening-of-san-francisco-office-expanding-support-for-private-markets-firms-adopting-next-generation-ai-technologies/"
+              sourceName="73 Strings Press Release"
+            />
+          </div>
+        </div>
+      );
+
+      const renderEnterprise = () => (
+        <div className="space-y-8">
+          {/* Reality Check */}
+          <div className="bg-gradient-to-r from-rose-800 to-rose-700 rounded-xl p-6 text-white">
+            <h3 className="text-lg font-semibold mb-2">The Implementation Reality</h3>
+            <p className="text-rose-100 leading-relaxed">
+              <span className="text-white font-bold text-2xl">95%</span> of corporate AI pilots fail to reach production or deliver ROI, 
+              according to MIT's December 2025 study. The root cause: "brittle workflows"—companies tried to drop AI into existing processes 
+              without re-engineering the underlying work. Success requires agentic AI systems that can navigate dynamic workflows, built on 
+              clean, governed data foundations.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <StoryCard
+              id="deloitte"
+              title="Deloitte: The Agentic Reality Check"
+              summary="Deloitte's Tech Trends 2026 report reveals a stark implementation gap: while 79% of enterprises are experimenting with AI, only 11% have successfully deployed agents in production environments with measurable business impact."
+              details="The primary bottleneck is legacy infrastructure. Agents cannot reason over data they cannot access. The report projects that 40% of agentic projects will fail by 2027 due to:
+
+• Unstructured data locked in legacy systems
+• Siloed repositories that prevent cross-functional agent operations
+• Rigid APIs that cannot support dynamic agentic workflows
+
+The implication: companies must invest in data architecture modernization before—or at least concurrent with—AI agent deployment."
+              flag="risk"
+              sourceUrl="https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/agentic-ai-strategy.html"
+              sourceName="Deloitte Insights"
+            />
+            <StoryCard
+              id="openai-enterprise"
+              title="OpenAI: Enterprise AI 2025 Report"
+              summary="OpenAI's enterprise deployment data shows average users saving 40-60 minutes per day, but a widening performance gap is emerging between 'frontier firms' who redesign workflows around AI and 'laggards' who simply add chatbots to existing processes."
+              details="The difference in outcomes is stark: frontier firms report productivity gains of 2-3x in specific workflows, while laggards see marginal improvements that often don't justify the implementation cost. The key differentiator is organizational change management—not technology selection."
+              flag="watch"
+              sourceUrl="https://openai.com/index/the-state-of-enterprise-ai-2025-report/"
+              sourceName="OpenAI"
+            />
+          </div>
+
+          <SectionHeader 
+            title="Regulatory Landscape" 
+            subtitle="The great divergence between federal and state approaches"
+          />
+          
+          <div className="grid md:grid-cols-2 gap-4">
+            <StoryCard
+              id="trump-eo"
+              title="Trump Signs AI Deregulation Executive Order"
+              summary="On December 11, President Trump signed an Executive Order aimed at blocking states from enacting their own AI regulations, establishing a DOJ 'AI Litigation Task Force' to challenge state laws on Commerce Clause grounds and setting up a constitutional collision with California."
+              details="Key provisions of the EO:
+
+• Creates DOJ task force to challenge state AI laws (specifically citing California and Colorado)
+• Threatens to withhold federal broadband funding (BEAD grants) from non-compliant states
+• Asserts federal preemption over AI safety regulation
+
+The strategic implication is massive legal uncertainty. While signaling a pro-innovation federal stance, corporations operating in California—the center of AI development—effectively face conflicting mandates until courts resolve the preemption question. Compliance officers cannot simply ignore state laws yet, as the EO's legal enforceability remains untested."
+              flag="risk"
+              sourceUrl="https://www.littler.com/news-analysis/asap/president-signs-executive-order-limit-state-regulation-artificial-intelligence"
+              sourceName="Littler Mendelson"
+            />
+            <StoryCard
+              id="eu-dsa"
+              title="EU Issues First Major DSA Fine: €120M to X"
+              summary="The European Commission issued its first significant fine under the Digital Services Act, penalizing X (formerly Twitter) €120 million for 'deceptive' blue checkmark practices and transparency failures—proving the EU's willingness to enforce its digital rulebook with meaningful financial penalties."
+              details="The fine specifically targeted 'dark patterns' in the verification system and lack of researcher access to platform data. For US tech firms, this confirms the 'Brussels Effect' remains a hard operational constraint regardless of US deregulation trends. Penalties can reach up to 6% of global revenue for serious violations."
+              flag="risk"
+              sourceUrl="https://thelens.slaughterandmay.com/post/102lxai/x-fined-120m-for-breaches-of-eu-digital-services-act-including-deceptive-blu"
+              sourceName="Slaughter and May"
+            />
+          </div>
+
+          <SectionHeader 
+            title="Industry Breakthroughs" 
+            subtitle="AI moving from pilot to production across sectors"
+          />
+          
+          <div className="grid md:grid-cols-2 gap-4">
+            <StoryCard
+              id="jpmorgan"
+              title="JPMorgan: Agentic Credit Processing"
+              summary="JPMorgan Chase is rewiring its corporate credit processes with agentic AI, moving toward 'touchless' operations where AI agents handle end-to-end credit workflows—from financial statement analysis through risk assessment to preliminary approval—with human oversight at key decision points."
+              details="This goes far beyond chatbots answering questions. JPMorgan's agents can read and interpret financial statements, assess credit risk against policy parameters, identify red flags requiring human review, and approve routine credit lines within predefined limits. The approach maintains human-in-the-loop oversight for complex decisions while dramatically accelerating routine processing."
+              flag="opportunity"
+              sourceUrl="https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights/the-future-is-agentic-ais-role-in-the-end-to-end-corporate-credit-process"
+              sourceName="McKinsey"
+            />
+            <StoryCard
+              id="bbva"
+              title="BBVA: 120,000 Employees Get ChatGPT Enterprise"
+              summary="BBVA announced a massive rollout of ChatGPT Enterprise to its entire 120,000-person global workforce, betting on 'bottom-up' innovation by empowering every employee to identify and automate their own repetitive tasks rather than imposing top-down transformation."
+              details="The approach represents a different philosophy than targeted, high-impact AI deployments. BBVA is betting that democratized access will surface automation opportunities that central IT teams would never identify, creating an 'AI-native' institution organically."
+              sourceUrl="https://www.fstech.co.uk/fst/BBVA_To_Roll_Out_ChatGPT_Across_120000_Strong_Global_Workforce.php"
+              sourceName="FStech"
+            />
+            <StoryCard
+              id="monkeypox"
+              title="AlphaFold 3: Monkeypox Vaccine Breakthrough"
+              summary="Researchers at UT Austin used AlphaFold 3 to identify a previously unknown viral surface protein target for Monkeypox vaccines—AI successfully predicted molecular binding interactions that human researchers had missed, accelerating the path to more effective vaccines."
+              details="This represents AI augmenting human scientific capability in a high-stakes domain, demonstrating the technology's potential for drug discovery acceleration."
+              flag="opportunity"
+              sourceUrl="https://news.utexas.edu/2025/12/10/ai-tips-off-scientists-to-new-drug-target-to-fight-treat-monkeypox-virus/"
+              sourceName="UT News"
+            />
+            <StoryCard
+              id="medra"
+              title="Medra Raises $52M for Physical AI Scientists"
+              summary="Medra raised $52M to build AI-powered robots that autonomously run wet-lab experiments, closing the critical loop between AI hypothesis generation and physical validation—addressing a major bottleneck in drug discovery where ideas outpace experimental capacity."
+              details="The platform allows AI systems to not just predict molecular interactions but to physically test them, dramatically accelerating the hypothesis-to-validation cycle in pharmaceutical R&D."
+              sourceUrl="https://siliconangle.com/2025/12/11/medra-developer-ai-powered-lab-robots-scientists-advance-drug-discovery-raises-52m/"
+              sourceName="SiliconANGLE"
+            />
+          </div>
+
+          <div className="bg-slate-100 rounded-lg p-4 mt-6">
+            <h4 className="font-semibold text-slate-800 mb-2">The Agentic Consumer: A $385B Shift</h4>
+            <p className="text-slate-600 text-sm">
+              Morgan Stanley and Visa project that by 2030, <span className="font-medium">$385 billion</span> in U.S. e-commerce will be driven by "agentic shoppers"—AI bots 
+              buying goods on behalf of humans. Brands must now optimize not just for human eyeballs (SEO), but for AI agent logic (AIO - Agentic Information Optimization). 
+              This creates an entirely new marketing layer: "Machine-Readable Commerce."
+            </p>
+          </div>
+        </div>
+      );
+
+      const renderMarket = () => (
+        <div className="space-y-8">
+          <div className="bg-gradient-to-r from-indigo-800 to-indigo-700 rounded-xl p-6 text-white">
+            <h3 className="text-lg font-semibold mb-2">Competitive Landscape</h3>
+            <p className="text-indigo-100 leading-relaxed">
+              December defined by consolidation and "ecosystem wars." Consulting firms racing to build agentic capabilities to bridge the 
+              implementation gap, while tech giants lock in the enterprise data layer through massive M&A. The infrastructure plays—streaming 
+              data, data governance, real-time pipelines—are where the smart money is moving.
+            </p>
+          </div>
+
+          <SectionHeader 
+            title="Consulting Arms Race" 
+            subtitle="Big firms building AI delivery capabilities"
+          />
+          
+          <div className="space-y-4">
+            <StoryCard
+              id="accenture"
+              title="Accenture & Anthropic: Major Multi-Year Partnership"
+              summary="Accenture and Anthropic launched a significant multi-year partnership that will train 30,000 Accenture professionals on Claude, establishing an 'Accenture Anthropic Business Group' specifically targeting regulated industries where AI safety and governance are paramount concerns."
+              details="This partnership represents a direct challenge to the OpenAI/Microsoft dominance in enterprise consulting. The strategic logic:
+
+• Anthropic's focus on safety and 'constitutional AI' appeals to risk-averse corporate clients in financial services, healthcare, and government who are wary of OpenAI's governance controversies
+• Accenture becomes a premier implementation partner for Claude Code and other Anthropic enterprise products
+• The dedicated business group creates specialized go-to-market for sectors where explainability and auditability are regulatory requirements
+
+For enterprises evaluating AI partnerships, this expands the viable options beyond the Microsoft/OpenAI ecosystem."
+              flag="watch"
+              sourceUrl="https://www.investing.com/news/company-news/accenture-and-anthropic-form-business-group-to-scale-enterprise-ai-93CH-4398506"
+              sourceName="Investing.com"
+            />
+            <StoryCard
+              id="mckinsey"
+              title="McKinsey State of AI 2025: The 'Agentic Divide'"
+              summary="McKinsey's annual State of AI report introduces the concept of the 'Agentic Divide': only 6% of companies qualify as 'AI High Performers' who have fundamentally redesigned workflows for agent-based operations—and these firms are seeing greater than 5% EBIT impact from their AI investments."
+              details="The remaining 94% are stuck in what McKinsey terms 'pilot purgatory'—deploying AI tools without capturing meaningful value. The report's central thesis: simply buying AI tools does not create value; rewiring the organization does. This includes:
+
+• Process redesign to accommodate agent-driven workflows
+• Data architecture modernization to enable agent access
+• Organizational change management to shift human roles from execution to oversight
+
+The implication for investors: when evaluating AI adoption claims, the question is not 'do they use AI?' but 'have they rewired their operations?'"
+              sourceUrl="https://medium.com/@briansolis/the-state-of-ai-in-2025-inside-the-6-rewiring-business-against-agentic-darwinism-312afda58528"
+              sourceName="Brian Solis / Medium"
+            />
+            <StoryCard
+              id="bain"
+              title="Bain Warns of $2 Trillion Revenue Gap to Fund AI"
+              summary="Bain's Global Technology Report identifies a critical tension in the AI infrastructure buildout: there is a $2 trillion revenue gap between the compute capacity being built and the software revenue needed to justify those investments by 2030."
+              details="The report advises clients to focus ruthlessly on software ROI to justify infrastructure investments. The math is simple but concerning: massive capital is flowing into data centers, GPU clusters, and power infrastructure based on projections of AI software value capture that have not yet materialized at scale.
+
+Bain's warning: if software value capture doesn't accelerate dramatically, the infrastructure bubble risks bursting. For investors, this suggests caution on pure infrastructure plays without clear paths to software monetization."
+              flag="risk"
+              sourceUrl="https://www.theconsultingreport.com/bain-company-report-warns-2-trillion-revenue-gap-to-meet-ai-compute-demand-by-2030/"
+              sourceName="The Consulting Report"
+            />
+          </div>
+
+          <SectionHeader 
+            title="Major M&A: Buying the Pipes" 
+            subtitle="Tech giants securing AI infrastructure layers"
+          />
+          
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-white rounded-lg border-2 border-blue-200 p-5">
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="font-bold text-gray-900">IBM Acquires Confluent</h3>
+                <span className="text-blue-600 font-bold">$11B</span>
+              </div>
+              <p className="text-gray-600 text-sm mb-3">
+                Agentic AI requires streaming data to act in the moment—it cannot rely on batch processing from data warehouses. 
+                Confluent (based on Apache Kafka) provides the "central nervous system" for real-time data movement across enterprise systems.
+              </p>
+              <p className="text-blue-800 text-sm bg-blue-50 p-2 rounded mb-2">
+                <span className="font-medium">Signal:</span> Data infrastructure—tools that clean, move, and govern data in real-time—is the "pick-and-shovel" play of the Agentic era.
+              </p>
+              <a
+                href="https://www.thestack.technology/ibm-to-buy-confluent-for-11-billion-and-hopefully-give-it-the-red-hat-treatment/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-blue-600 text-xs font-medium hover:text-blue-800"
+              >
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Read more at The Stack
+              </a>
+            </div>
+            <div className="bg-white rounded-lg border-2 border-purple-200 p-5">
+              <div className="flex justify-between items-start mb-3">
+                <h3 className="font-bold text-gray-900">Salesforce + Informatica Integration</h3>
+                <span className="text-purple-600 font-bold">$8B</span>
+              </div>
+              <p className="text-gray-600 text-sm mb-3">
+                Following the November acquisition close, Salesforce is integrating Informatica into its Data 360 platform to provide 
+                "grounding" data for Agentforce. The lesson: Salesforce realized its agents hallucinated without pristine data lineage and governance.
+              </p>
+              <p className="text-purple-800 text-sm bg-purple-50 p-2 rounded mb-2">
+                <span className="font-medium">Signal:</span> Agents without clean, governed data are liability risks. Data quality is not optional infrastructure—it's a prerequisite.
+              </p>
+              <a
+                href="https://www.salesforce.com/news/press-releases/2025/11/18/salesforce-completes-acquisition-of-informatica/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-purple-600 text-xs font-medium hover:text-purple-800"
+              >
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Read Salesforce announcement
+              </a>
+            </div>
+          </div>
+
+          <SectionHeader 
+            title="Frontier Model Updates" 
+            subtitle="The capability gap is closing—differentiation shifts to integration"
+          />
+          
+          <div className="space-y-4">
+            <StoryCard
+              id="gpt52"
+              title="OpenAI: GPT-5.2 'Code Red' Launch"
+              summary="OpenAI launched GPT-5.2 in December under internal 'Code Red' pressure from Google Gemini 3's capabilities. The new 'thinking' model is optimized for professional work, setting new benchmarks on economically valuable tasks—beating human experts in 70.9% of comparisons on the GDPval benchmark."
+              details="CEO Sam Altman's declaration of internal 'Code Red' signals that the model capability gap between leading providers is closing rapidly, triggering a fierce price/performance war. OpenAI is explicitly pivoting positioning from 'consumer chat' to 'enterprise labor replacement.'
+
+Pricing: $1.75 per million input tokens—aggressive pricing to capture enterprise market share before competitors can match capabilities."
+              sourceUrl="https://openai.com/index/introducing-gpt-5-2/"
+              sourceName="OpenAI"
+            />
+            <StoryCard
+              id="gemini"
+              title="Google: Gemini 3 Deep Research Agent via API"
+              summary="Google released its Gemini Deep Research agent through the API, enabling developers to deploy systems that autonomously plan, execute, and synthesize multi-step research tasks—browsing and analyzing thousands of web pages to produce comprehensive reports."
+              details="Unlike standard chatbots that answer questions, Deep Research agents can execute complex, multi-hour research workflows autonomously. The capability directly targets 'junior analyst' workflows prevalent in financial services, consulting, and legal—potentially the highest-value automation opportunity in knowledge work."
+              sourceUrl="https://blog.google/technology/developers/deep-research-agent-gemini-api/"
+              sourceName="Google Blog"
+            />
+            <StoryCard
+              id="mistral"
+              title="Mistral: Devstral 2 for Sovereign/Private AI"
+              summary="French AI lab Mistral released Devstral 2, a high-performance coding model specifically designed to run locally on laptops and edge devices—a direct push for 'Sovereign AI' that keeps data private and eliminates the security concerns of sending proprietary code to OpenAI or Google."
+              details="For PE firms, banks, and other organizations paranoid about data leakage to US cloud providers, high-performance local models are becoming a critical alternative. Devstral 2 enables 'air-gapped' coding assistance—development teams can use AI tools without any data leaving their network."
+              sourceUrl="https://markets.financialcontent.com/wral/article/tokenring-2025-12-9-mistral-ai-unleashes-devstral-2-and-vibe-cli-redefining-enterprise-and-open-source-coding-ai"
+              sourceName="Financial Content"
+            />
+            <StoryCard
+              id="meta"
+              title="Meta: 'Avocado' Pivot Rumors"
+              summary="Reports emerged in December that Meta is shifting strategy from open-source Llama models to a new closed, paid model codenamed 'Avocado,' potentially slated for 2026—suggesting that even Meta is finding the economics of open-sourcing frontier models unsustainable."
+              details="If confirmed, this would significantly reduce the availability of high-quality open-source base models for enterprise fine-tuning. Many firms' AI strategies depend on Llama's open weights for customization—a shift to closed models could drive up costs and reduce flexibility for these organizations."
+              flag="watch"
+              sourceUrl="https://the-decoder.com/meta-is-reportedly-ditching-open-llama-models-for-avocado-a-closed-model-built-for-direct-sales/"
+              sourceName="The Decoder"
+            />
+          </div>
+        </div>
+      );
+
+      const renderSources = () => {
+        const sources = [
+          { title: "OpenAI: The State of Enterprise AI 2025 Report", url: "https://openai.com/index/the-state-of-enterprise-ai-2025-report/", category: "Enterprise" },
+          { title: "MIT: Why 95% of Corporate AI Projects Fail", url: "https://complexdiscovery.com/why-95-of-corporate-ai-projects-fail-lessons-from-mits-2025-study/", category: "Enterprise" },
+          { title: "OpenAI: Introducing GPT-5.2", url: "https://openai.com/index/introducing-gpt-5-2/", category: "Technology" },
+          { title: "Google: Deep Research Agent via Gemini API", url: "https://blog.google/technology/developers/deep-research-agent-gemini-api/", category: "Technology" },
+          { title: "Trump Executive Order on State AI Regulation", url: "https://www.littler.com/news-analysis/asap/president-signs-executive-order-limit-state-regulation-artificial-intelligence", category: "Regulatory" },
+          { title: "EU DSA Fine Against X (€120M)", url: "https://thelens.slaughterandmay.com/post/102lxai/x-fined-120m-for-breaches-of-eu-digital-services-act", category: "Regulatory" },
+          { title: "Vista Equity Partners: AI Workforce Plans", url: "https://www.investing.com/news/company-news/vista-equity-partners-plans-significant-workforce-cuts-ai-adoption--report-93CH-4350047", category: "PE/VC" },
+          { title: "EQT: 10,000 Humanoid Robots Deployment", url: "https://inforcapital.com/news/eqt-to-roll-out-up-to-10000-1x-humanoid-robots/", category: "PE/VC" },
+          { title: "ToltIQ: AI in Private Equity Due Diligence", url: "https://worth.com/ai-transforming-private-equity/", category: "PE/VC" },
+          { title: "Juniper Square: First AI CRM for Private Markets", url: "https://www.junipersquare.com/news/ai-crm", category: "PE/VC" },
+          { title: "IBM Acquires Confluent ($11B)", url: "https://www.thestack.technology/ibm-to-buy-confluent-for-11-billion-and-hopefully-give-it-the-red-hat-treatment/", category: "M&A" },
+          { title: "Accenture & Anthropic Partnership", url: "https://www.investing.com/news/company-news/accenture-and-anthropic-form-business-group-to-scale-enterprise-ai-93CH-4398506", category: "Consulting" },
+          { title: "McKinsey: State of AI 2025", url: "https://medium.com/@briansolis/the-state-of-ai-in-2025-inside-the-6-rewiring-business-against-agentic-darwinism-312afda58528", category: "Consulting" },
+          { title: "Bain: $2 Trillion AI Revenue Gap", url: "https://www.theconsultingreport.com/bain-company-report-warns-2-trillion-revenue-gap-to-meet-ai-compute-demand-by-2030/", category: "Consulting" },
+          { title: "Deloitte: Tech Trends 2026 - Agentic Reality Check", url: "https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/agentic-ai-strategy.html", category: "Consulting" },
+          { title: "JPMorgan: Agentic AI in Credit", url: "https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights/the-future-is-agentic-ais-role-in-the-end-to-end-corporate-credit-process", category: "Financial Services" },
+          { title: "BBVA: ChatGPT for 120,000 Employees", url: "https://www.fstech.co.uk/fst/BBVA_To_Roll_Out_ChatGPT_Across_120000_Strong_Global_Workforce.php", category: "Financial Services" },
+          { title: "Coller Capital: AI for Exit Timing", url: "https://www.collercapital.com/using-ai-to-predict-the-perfect-exit-a-new-era-for-private-equity/", category: "PE/VC" },
+          { title: "Mistral: Devstral 2 Launch", url: "https://markets.financialcontent.com/wral/article/tokenring-2025-12-9-mistral-ai-unleashes-devstral-2-and-vibe-cli-redefining-enterprise-and-open-source-coding-ai", category: "Technology" },
+          { title: "Meta: Avocado Model Pivot", url: "https://the-decoder.com/meta-is-reportedly-ditching-open-llama-models-for-avocado-a-closed-model-built-for-direct-sales/", category: "Technology" }
+        ];
+
+        const categoryColors = {
+          'PE/VC': 'bg-blue-100 text-blue-700',
+          'Enterprise': 'bg-green-100 text-green-700',
+          'Technology': 'bg-purple-100 text-purple-700',
+          'Regulatory': 'bg-red-100 text-red-700',
+          'M&A': 'bg-orange-100 text-orange-700',
+          'Consulting': 'bg-teal-100 text-teal-700',
+          'Financial Services': 'bg-indigo-100 text-indigo-700'
+        };
+
+        return (
+          <div className="space-y-6">
+            <div className="bg-slate-100 rounded-lg p-4">
+              <p className="text-slate-600 text-sm">
+                <span className="font-medium">20 curated sources</span> from our December 2025 research across PE/VC developments, 
+                enterprise AI trends, and competitive market intelligence. Click any source to read the full article.
+              </p>
+            </div>
+            <div className="space-y-2">
+              {sources.map((source, index) => (
+                <a
+                  key={index}
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all group"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-400 text-sm font-mono w-6">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="text-gray-800 group-hover:text-blue-600 text-sm">{source.title}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs px-2 py-0.5 rounded ${categoryColors[source.category]}`}>
+                      {source.category}
+                    </span>
+                    <span className="text-gray-400 group-hover:text-blue-600">→</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      };
+
+      return (
+        <div className="min-h-screen bg-gray-50">
+          {/* Header */}
+          <div className="bg-white border-b border-gray-200">
+            <div className="max-w-4xl mx-auto px-6 py-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">C</span>
+                </div>
+                <span className="text-slate-400 text-sm">CADRE AI</span>
+              </div>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                Avante Capital Partners
+              </h1>
+              <p className="text-gray-500 text-lg mb-1">AI Newsletter Briefing</p>
+              <p className="text-gray-400 text-sm mb-4">December 2025</p>
+              <p className="text-gray-700 leading-relaxed">
+                <span className="font-semibold">The Agentic Shift, Capital Efficiency, and the New Regulatory Fracture</span>
+                <br />
+                <span className="text-gray-500">Strategic intelligence for private equity and venture capital leaders</span>
+              </p>
+            </div>
+          </div>
+
+          {/* Intro Video Section - Clickable Card */}
+          <div className="max-w-4xl mx-auto px-6 py-6">
+            <a
+              href="https://app.heygen.com/guest/videos/2d17d0283b544b138a33e3b91abce954"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-6 hover:from-blue-500 hover:to-indigo-500 transition-all group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-white font-semibold text-lg">Quick Introduction</p>
+                  <p className="text-blue-100 text-sm">A brief welcome to this month's AI intelligence briefing</p>
+                </div>
+                <span className="ml-auto text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all">→</span>
+              </div>
+            </a>
+          </div>
+
+          {/* Full Video Section - Link */}
+          <div className="max-w-4xl mx-auto px-6 pb-6">
+            <a
+              href="https://drive.google.com/file/d/1rblHpNwjHKuc7YR5uP3ZCJnLC3zOSPED/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-6 hover:from-slate-700 hover:to-slate-600 transition-all group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-white font-semibold text-lg">Watch the Full Video Summary</p>
+                  <p className="text-slate-300 text-sm">Complete executive overview of December's key developments</p>
+                </div>
+                <span className="ml-auto text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all">→</span>
+              </div>
+            </a>
+          </div>
+
+          {/* Tabs */}
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="flex gap-1 bg-gray-100 p-1 rounded-lg">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-md text-sm font-medium transition-all ${
+                    activeTab === tab.id
+                      ? 'bg-white text-gray-900 shadow-sm'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  <span>{tab.icon}</span>
+                  <span className="hidden sm:inline">{tab.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="max-w-4xl mx-auto px-6 py-8">
+            {activeTab === 'pevc' && renderPEVC()}
+            {activeTab === 'enterprise' && renderEnterprise()}
+            {activeTab === 'market' && renderMarket()}
+            {activeTab === 'sources' && renderSources()}
+          </div>
+
+          {/* Footer */}
+          <div className="border-t border-gray-200 bg-white mt-12">
+            <div className="max-w-4xl mx-auto px-6 py-8">
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-6 h-6 bg-slate-900 rounded flex items-center justify-center">
+                      <span className="text-white font-bold text-xs">C</span>
+                    </div>
+                    <span className="text-slate-900 font-semibold">Cadre AI</span>
+                  </div>
+                  <p className="text-gray-500 text-sm">The Leader in AI Implementation Services</p>
+                </div>
+                <p className="text-gray-400 text-sm">December 2025 Edition</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<AvanteNewsletter />);
+  </script>
+</body>
+</html>
